@@ -1,0 +1,15 @@
+.letter-tile {
+  background-color: blue;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+}
