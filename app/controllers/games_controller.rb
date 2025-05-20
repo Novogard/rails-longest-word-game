@@ -1,24 +1,20 @@
 require 'open-uri'
 
 class GamesController < ApplicationController
-
-  def new;
-    # @letters = []
-    # 10.times {@letters << ('A'..'Z').to_a.sample}
-  end
+  def new; end
 
   def score
+    session[:rounds_played] += 1
     @word = params[:answer].downcase.strip
     @game = GamesService.new(@word, params[:letters].chars)
-    # p params[:letters]
-    # p params[:letters].split
-    # p @word
     @message = if @game.word_exists? && @game.word_valid?
                  'GG'
+                 session[:valid_words_played] += 1
                elsif @game.word_exists? && !@game.word_valid?
                  "That's a word, but not from the grid"
                elsif !@game.word_exists? && @game.word_valid?
                  'You gotta guess a word ...'
+                 session[:illiterate_words_played] += 1
                else
                  "You're not the sharpest tool in the shed, right?"
                end

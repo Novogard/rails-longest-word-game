@@ -6,4 +6,4 @@
 <% if session[:longest_word] != '' %>
   <p>Your longest word is <%= session[:longest_word] %>, for <%= session[:longest_word].length %> points</p>
 <% end %>
-<%= link_to "Next attempt!", new_path %>
+<%= link_to "Next attempt!", root_path %>
