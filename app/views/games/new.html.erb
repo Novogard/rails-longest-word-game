@@ -1,12 +1,22 @@
-<h1>Games#new</h1>
-<div class="d-flex flex-wrap gap-2">
-  <%@letters.each do |letter|%>
-     <div class="letter-tile"><%=letter%></div>
-  <%end%>
-</div>
+<div id="container" data-controller="game" data-action="keyup.left->game#consonant keyup.right->game#vowel" tabindex="0">
+  <h1 class="text-center">The longest word game!</h1>
+  <h3 class="text-center">Press left to draw a consonant, right to draw a vowel</h3>
+  <p class= "text-center">(You might need to click on the window, first)</p>
+  <div class="box">
+    <ul class="list-group list-group-horizontal border-1"  id="sortable-in" data-game-target="input">
+    </ul>
+  </div>
 
-<form action="score" method="post" data-turbo="false">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="answer">Write the longest word!</label>
-  <input type="text" name="answer"/>
-</form>
+  <div class="d-flex justify-content-center">
+    <form action="score" method="post" data-turbo="false" data-game-target="form">
+      <div class="box">
+        <ul class="d-flex flex-wrap gap-2 list-group list-group-horizontal" id="sortable-out" data-game-target="output">
+        </ul>
+      </div>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :letters, "", id: 'letters-field', data: { game_target: 'letters' } %>
+      <%= hidden_field_tag :answer, "", id: 'answer-field', data: { game_target: 'answer' } %>
+      <button class="btn btn-primary btn-lg"  data-action="click->game#salute">Done?</button>
+    </form>
+  </div>
+</div>

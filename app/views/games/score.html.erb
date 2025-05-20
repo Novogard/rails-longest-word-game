@@ -1,2 +1,9 @@
+<div class="score-container">
 <h1>Games#score</h1>
-<p>Find me in app/views/games/score.html.erb</p>
+<p><%=@message%></p>
+<p>You score <%= @points %> points </p>
+<p>Your total score is <%= session[:score] %> points </p>
+<% if session[:longest_word] != '' %>
+  <p>Your longest word is <%= session[:longest_word] %>, for <%= session[:longest_word].length %> points</p>
+<% end %>
+<%= link_to "Next attempt!", new_path %>
